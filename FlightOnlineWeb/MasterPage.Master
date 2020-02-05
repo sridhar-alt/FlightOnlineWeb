@@ -1,0 +1,56 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="FlightOnlineWeb.MasterPage" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+        <title></title>
+    <style>
+        text
+        {
+            text-align:center
+        }
+        table
+        {
+            text-align:left;
+        }
+        body 
+        {
+            text-align: center;  
+        }
+        button
+        {
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <table>
+        <tr>
+            <td colspan="2" 
+                style="width: 800px;
+                color: black;
+                background-color: gray;
+                height: 80px;
+                text-align: center">
+                <h1>Online Flight Booking</h1>
+                <span style="margin-left:600px" >
+                    <asp:HyperLink runat="server" ID="lnkLogin" Text="Login" NavigateUrl="~/LoginPage.aspx"></asp:HyperLink>
+                    <asp:HyperLink runat="server" ID="lnkRegister" Text="Register" NavigateUrl="~/Register.aspx"></asp:HyperLink>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td style="height:500px; width:650px">  
+                <div>
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>
