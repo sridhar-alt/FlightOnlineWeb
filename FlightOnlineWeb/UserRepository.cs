@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace FlightOnlineWeb
 {
-    public class Repository
+    public class UserRepository
     {
-        public Boolean ValidateLogin(string mobile, string password)
+        public static Int16 ValidateLogin(string mobile, string password)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
             SqlConnection sqlConnection = new SqlConnection(connectionString);
@@ -22,12 +23,28 @@ namespace FlightOnlineWeb
                     {
                         if ((dataReader.GetString(0) == mobile) && (dataReader.GetString(1) == password))
                         {
-                            return true;
+                            return 1;
                         }
                     }
                 }
             }
-            return false;
+            sql = "USER_PROC_ADMINLOGIN";
+            sqlCommand = new SqlCommand(sql, sqlConnection);
+            sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+            {
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        if ((dataReader.GetString(0) == mobile) && (dataReader.GetString(1) == password))
+                        {
+                            return 2;
+                        }
+                    }
+                }
+            }
+            return 0;
         }
         public static Boolean RegisterUser(UserEntity user)
         {
@@ -51,6 +68,8 @@ namespace FlightOnlineWeb
                 sqlCommand.Parameters.Add(param);
                 param = new SqlParameter("@PASSWORD", user.password);
                 sqlCommand.Parameters.Add(param);
+                param = new SqlParameter("@MEMBERROLE",user.role);
+                sqlCommand.Parameters.Add(param);
                 row=sqlCommand.ExecuteNonQuery();
             }
             if(row>0)
@@ -60,6 +79,18 @@ namespace FlightOnlineWeb
             else
             {
                 return false;
+            }
+        }
+        public static DataTable ViewFlightDetails()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("select * from flightdb", sqlConnection);
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+                return dataTable;
             }
         }
     }

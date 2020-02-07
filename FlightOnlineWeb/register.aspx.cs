@@ -21,7 +21,7 @@ namespace FlightOnlineWeb
             string userAddress = txtAddress.Text;
             string password = txtPassword.Text;
             UserEntity user = new UserEntity(name, mobile, dob, mail, gender, userAddress, password);
-            if(Repository.RegisterUser(user))
+            if(UserRepository.RegisterUser(user))
             {
                 Response.Write("registered");
                 Response.Redirect("LoginPage.aspx");

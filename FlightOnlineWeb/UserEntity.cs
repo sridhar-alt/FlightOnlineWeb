@@ -10,6 +10,7 @@ namespace FlightOnlineWeb
         public string sex { get; set; }
         public string userAddress { get; set; }
         public string password { get; set; }
+        public string role { get; set; }
         public UserEntity(string name,string mobile,DateTime dob,string mail,string sex,string userAddress,string password)
         {
             this.name = name;
@@ -19,6 +20,7 @@ namespace FlightOnlineWeb
             this.sex = sex;
             this.userAddress = userAddress;
             this.password = password;
+            role = "user";
         }
     }
 }

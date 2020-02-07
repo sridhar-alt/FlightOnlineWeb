@@ -11,61 +11,61 @@ namespace FlightOnlineWeb
 {
 
 
-    public partial class MasterPage
+    public partial class Adminpage
     {
 
         /// <summary>
-        /// head control.
+        /// TxtFlightNameId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.TextBox TxtFlightNameId;
 
         /// <summary>
-        /// form1 control.
+        /// LabelFlightNameId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Label LabelFlightNameId;
 
         /// <summary>
-        /// lnkLogin control.
+        /// TxtFlightName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkLogin;
+        protected global::System.Web.UI.WebControls.TextBox TxtFlightName;
 
         /// <summary>
-        /// lnkRegister control.
+        /// LabelFlightName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkRegister;
+        protected global::System.Web.UI.WebControls.Label LabelFlightName;
 
         /// <summary>
-        /// lnkViewFlight control.
+        /// TxtFlightNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkViewFlight;
+        protected global::System.Web.UI.WebControls.TextBox TxtFlightNumber;
 
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// LabelFlightNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.Label LabelFlightNumber;
     }
 }

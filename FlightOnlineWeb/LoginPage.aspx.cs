@@ -16,15 +16,18 @@ namespace FlightOnlineWeb
 
         protected void Login(object sender, EventArgs e)
         {
-            Repository repository = new Repository();
             string mobile = txtmobile.Text;
             string password = txtpassword.Text;
-            bool result=repository.ValidateLogin(mobile,password);
-            if(result)
+            Int16 result = UserRepository.ValidateLogin(mobile, password);
+            if (result==2)
             {
-                Response.Write("Successfull");
+                Response.Redirect("AdminPage.aspx");
             }
-            else
+            else if(result==1)
+            {
+                Response.Write("USER PAGE Successfull");
+            }
+            else if(result==0)
             {
                 Response.Write("lOGIN FAILED");
             }
