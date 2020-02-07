@@ -29,25 +29,45 @@ namespace FlightOnlineWeb
                 idFlightView1.DataBind();
             }
         }
-        protected void idFlightView1_RowDeleting(object sender,GridViewDeletedEventArgs e)
-        {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString);
-            int flightId = Convert.ToInt16(idFlightView1.DataKeys[e.RowIndex].Values["flightId"].ToString());
-            con.Open();
-            SqlCommand cmd = new SqlCommand("delete from flightdb where @flightId =flightId", con);
-            cmd.Parameters.AddWithValue("@FlightId",flightId);
-            int i = cmd.ExecuteNonQuery();
-            con.Close();
-            FillData();
-        }
-        protected void idFlightView1_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void FlightView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
             idFlightView1.EditIndex = e.NewEditIndex;
             FillData();
         }
-        protected void idFlightView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        protected void FlightView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             idFlightView1.EditIndex = -1;
+            FillData();
+        }
+        protected void FlightView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString);
+
+            string txtFlightName = Convert.ToString(idFlightView1.Rows[e.RowIndex].FindControl("flightName"));
+            string txtFlightNumber = Convert.ToString(idFlightView1.Rows[e.RowIndex].FindControl("flightNumber"));
+            int id = Convert.ToInt16(idFlightView1.DataKeys[e.RowIndex].Values["flightId"].ToString());
+            con.Open();
+            SqlCommand cmd = new SqlCommand("UPDATE_FLIGHTDB", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@FLIGHTID", id);
+            cmd.Parameters.AddWithValue("@FLIGHTNAME", txtFlightName);
+            cmd.Parameters.AddWithValue("@FLIGHTNUMBER", txtFlightNumber);
+            int i = cmd.ExecuteNonQuery();
+            con.Close();
+            idFlightView1.EditIndex = -1;
+            FillData();
+        }
+
+        protected void FlightView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
+            SqlConnection con = new SqlConnection(connectionString);
+            int id = Convert.ToInt16(idFlightView1.DataKeys[e.RowIndex].Values["flightId"].ToString());
+            con.Open();
+            SqlCommand cmd = new SqlCommand("delete from flightdb where @flightId =flightId", con);
+            cmd.Parameters.AddWithValue("@FlightId", id);
+            int i = cmd.ExecuteNonQuery();
+            con.Close();
             FillData();
         }
     }

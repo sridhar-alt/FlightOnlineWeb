@@ -15,57 +15,12 @@ namespace FlightOnlineWeb
     {
 
         /// <summary>
-        /// TxtFlightNameId control.
+        /// idFlightView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtFlightNameId;
-
-        /// <summary>
-        /// LabelFlightNameId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelFlightNameId;
-
-        /// <summary>
-        /// TxtFlightName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtFlightName;
-
-        /// <summary>
-        /// LabelFlightName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelFlightName;
-
-        /// <summary>
-        /// TxtFlightNumber control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtFlightNumber;
-
-        /// <summary>
-        /// LabelFlightNumber control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelFlightNumber;
+        protected global::System.Web.UI.WebControls.GridView idFlightView1;
     }
 }
