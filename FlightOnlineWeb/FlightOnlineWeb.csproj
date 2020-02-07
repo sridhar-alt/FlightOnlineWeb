@@ -171,7 +171,6 @@
     <Compile Include="Adminpage.aspx.designer.cs">
       <DependentUpon>Adminpage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminRepository.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -220,8 +219,6 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserRepository.cs" />
-    <Compile Include="UserEntity.cs" />
     <Compile Include="ViewFlight.aspx.cs">
       <DependentUpon>ViewFlight.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -257,6 +254,16 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FlightOnilne.Entity\FlightOnilne.Entity.csproj">
+      <Project>{4B94EE9C-9C60-4FB8-9619-358035A1520D}</Project>
+      <Name>FlightOnilne.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FlightOnline.BL\FlightOnline.BL.csproj">
+      <Project>{56EAC084-A811-46A4-9666-675A73F67617}</Project>
+      <Name>FlightOnline.BL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

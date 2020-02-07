@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlightOnline.BL;
+using System;
 using System.Data;
 
 namespace FlightOnlineWeb
@@ -8,7 +9,7 @@ namespace FlightOnlineWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             DataTable dataTable = new DataTable();
-            dataTable = UserRepository.ViewFlightDetails();
+            dataTable = UserBL.ViewFlightDetails();
             idFlightView.DataSource = dataTable;
             idFlightView.DataBind();
         }

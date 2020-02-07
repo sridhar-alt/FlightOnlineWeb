@@ -1,5 +1,10 @@
 ﻿using System;
-namespace FlightOnlineWeb
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FlightOnilne.Entity
 {
     public class UserEntity
     {
@@ -11,7 +16,7 @@ namespace FlightOnlineWeb
         public string userAddress { get; set; }
         public string password { get; set; }
         public string role { get; set; }
-        public UserEntity(string name,string mobile,DateTime dob,string mail,string sex,string userAddress,string password)
+        public UserEntity(string name, string mobile, DateTime dob, string mail, string sex, string userAddress, string password)
         {
             this.name = name;
             this.mobile = mobile;

@@ -1,9 +1,14 @@
-﻿using System;
+﻿using FlightOnilne.Entity;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FlightOnlineWeb
+namespace FlightOnline.DAL
 {
     public class UserRepository
     {
@@ -58,7 +63,7 @@ namespace FlightOnlineWeb
                 sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 SqlParameter param = new SqlParameter("@NAME", user.name);
                 sqlCommand.Parameters.Add(param);
-                param = new SqlParameter("@MOBILENUMBER",user.mobile);
+                param = new SqlParameter("@MOBILENUMBER", user.mobile);
                 sqlCommand.Parameters.Add(param);
                 param = new SqlParameter("@DOB", user.dob);
                 sqlCommand.Parameters.Add(param);
@@ -68,11 +73,11 @@ namespace FlightOnlineWeb
                 sqlCommand.Parameters.Add(param);
                 param = new SqlParameter("@PASSWORD", user.password);
                 sqlCommand.Parameters.Add(param);
-                param = new SqlParameter("@MEMBERROLE",user.role);
+                param = new SqlParameter("@MEMBERROLE", user.role);
                 sqlCommand.Parameters.Add(param);
-                row=sqlCommand.ExecuteNonQuery();
+                row = sqlCommand.ExecuteNonQuery();
             }
-            if(row>0)
+            if (row > 0)
             {
                 return true;
             }

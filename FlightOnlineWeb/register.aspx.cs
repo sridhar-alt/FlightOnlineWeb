@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FlightOnilne.Entity;
+using FlightOnline.BL;
+using System;
 namespace FlightOnlineWeb
 {
     public partial class Register : System.Web.UI.Page
@@ -21,7 +23,7 @@ namespace FlightOnlineWeb
             string userAddress = txtAddress.Text;
             string password = txtPassword.Text;
             UserEntity user = new UserEntity(name, mobile, dob, mail, gender, userAddress, password);
-            if(UserRepository.RegisterUser(user))
+            if(UserBL.RegisterUser(user))
             {
                 Response.Write("registered");
                 Response.Redirect("LoginPage.aspx");

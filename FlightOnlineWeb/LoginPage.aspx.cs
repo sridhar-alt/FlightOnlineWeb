@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlightOnline.BL;
+using System;
 
 namespace FlightOnlineWeb
 {
@@ -18,7 +19,7 @@ namespace FlightOnlineWeb
         {
             string mobile = txtmobile.Text;
             string password = txtpassword.Text;
-            Int16 result = UserRepository.ValidateLogin(mobile, password);
+            Int16 result = UserBL.ValidateLogin(mobile, password);
             if (result==2)
             {
                 Response.Redirect("AdminPage.aspx");
