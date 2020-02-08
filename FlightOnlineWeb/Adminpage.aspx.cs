@@ -33,7 +33,6 @@ namespace FlightOnlineWeb
         }
         protected void FlightView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            
             string txtFlightName = Convert.ToString((idFlightView1.Rows[e.RowIndex].FindControl("TxtFlightName") as TextBox).Text);
             string txtFlightNumber = Convert.ToString((idFlightView1.Rows[e.RowIndex].FindControl("TxtFlightNumber")as TextBox).Text);
             int id = Convert.ToInt16(idFlightView1.DataKeys[e.RowIndex].Values["flightId"].ToString());
