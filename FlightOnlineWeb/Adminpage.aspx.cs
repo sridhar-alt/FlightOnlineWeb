@@ -45,9 +45,11 @@ namespace FlightOnlineWeb
             FlightBL.DeleteFlight(id);
             FillData();
         }
-        protected void Insert(object sender, EventArgs e)
+        protected void btnInsert_Click(object sender, EventArgs e)
         {
-            FlightBL.InsertFlight(txtFlightName.Text, txtFlightNumber.Text);
+            string txtFlightName = Convert.ToString((idFlightView1.FooterRow.FindControl("txtInsertFlightName") as TextBox).Text);
+            string txtFlightNumber = Convert.ToString((idFlightView1.FooterRow.FindControl("txtInsertFlightNumber") as TextBox).Text);
+            FlightBL.InsertFlight(txtFlightName,txtFlightNumber);
             FillData();
         }
     }

@@ -15,36 +15,38 @@ namespace FlightOnline.DAL
         public static Int16 ValidateLogin(string mobile, string password)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
-            SqlConnection sqlConnection = new SqlConnection(connectionString);
-            sqlConnection.Open();
-            string sql = "USER_PROC_LOGIN";
-            SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
-            sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-            using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
-                if (dataReader.HasRows)
+                sqlConnection.Open();
+                string sql = "USER_PROC_LOGIN";
+                SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                 {
-                    while (dataReader.Read())
+                    if (dataReader.HasRows)
                     {
-                        if ((dataReader.GetString(0) == mobile) && (dataReader.GetString(1) == password))
+                        while (dataReader.Read())
                         {
-                            return 1;
+                            if ((dataReader.GetString(0) == mobile) && (dataReader.GetString(1) == password))
+                            {
+                                return 1;
+                            }
                         }
                     }
                 }
-            }
-            sql = "USER_PROC_ADMINLOGIN";
-            sqlCommand = new SqlCommand(sql, sqlConnection);
-            sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-            using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
-            {
-                if (dataReader.HasRows)
+                sql = "USER_PROC_ADMINLOGIN";
+                sqlCommand = new SqlCommand(sql, sqlConnection);
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                 {
-                    while (dataReader.Read())
+                    if (dataReader.HasRows)
                     {
-                        if ((dataReader.GetString(0) == mobile) && (dataReader.GetString(1) == password))
+                        while (dataReader.Read())
                         {
-                            return 2;
+                            if ((dataReader.GetString(0) == mobile) && (dataReader.GetString(1) == password))
+                            {
+                                return 2;
+                            }
                         }
                     }
                 }
@@ -55,27 +57,29 @@ namespace FlightOnline.DAL
         {
             int row = 0;
             string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
-            SqlConnection sqlConnection = new SqlConnection(connectionString);
-            sqlConnection.Open();
-            string sql = "USER_PROC_INSERT";
-            using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
-                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                SqlParameter param = new SqlParameter("@NAME", user.name);
-                sqlCommand.Parameters.Add(param);
-                param = new SqlParameter("@MOBILENUMBER", user.mobile);
-                sqlCommand.Parameters.Add(param);
-                param = new SqlParameter("@DOB", user.dob);
-                sqlCommand.Parameters.Add(param);
-                param = new SqlParameter("@SEX", user.sex);
-                sqlCommand.Parameters.Add(param);
-                param = new SqlParameter("@USERADDRESS", user.userAddress);
-                sqlCommand.Parameters.Add(param);
-                param = new SqlParameter("@PASSWORD", user.password);
-                sqlCommand.Parameters.Add(param);
-                param = new SqlParameter("@MEMBERROLE", user.role);
-                sqlCommand.Parameters.Add(param);
-                row = sqlCommand.ExecuteNonQuery();
+                sqlConnection.Open();
+                string sql = "USER_PROC_INSERT";
+                using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
+                {
+                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    SqlParameter param = new SqlParameter("@NAME", user.name);
+                    sqlCommand.Parameters.Add(param);
+                    param = new SqlParameter("@MOBILENUMBER", user.mobile);
+                    sqlCommand.Parameters.Add(param);
+                    param = new SqlParameter("@DOB", user.dob);
+                    sqlCommand.Parameters.Add(param);
+                    param = new SqlParameter("@SEX", user.sex);
+                    sqlCommand.Parameters.Add(param);
+                    param = new SqlParameter("@USERADDRESS", user.userAddress);
+                    sqlCommand.Parameters.Add(param);
+                    param = new SqlParameter("@PASSWORD", user.password);
+                    sqlCommand.Parameters.Add(param);
+                    param = new SqlParameter("@MEMBERROLE", user.role);
+                    sqlCommand.Parameters.Add(param);
+                    row = sqlCommand.ExecuteNonQuery();
+                }
             }
             if (row > 0)
             {

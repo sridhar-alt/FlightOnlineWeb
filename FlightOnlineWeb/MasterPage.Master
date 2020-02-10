@@ -31,10 +31,10 @@
         <table>
         <tr>
             <td colspan="2" 
-                style="width:1500px;
+                style="width:100%;
                 color: black;
                 background-color: gray;
-                height: 80px;
+                height: 2%;
                 text-align: center">
                 <h1>Online Flight Booking</h1>
                     <span style="margin-left:600px; word-spacing:40px;" >

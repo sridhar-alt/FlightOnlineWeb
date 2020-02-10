@@ -49,15 +49,17 @@ namespace FlightOnline.DAL
         }
         public static void UpdateFlight(int id, string flightName, string flightNumber)
         {
-            SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString);
-            sqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("UPDATE_FLIGHTDB", sqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@FLIGHTID", id);
-            sqlCommand.Parameters.AddWithValue("@FLIGHTNAME", flightName);
-            sqlCommand.Parameters.AddWithValue("@FLIGHTNUMBER", flightNumber);
-            int i = sqlCommand.ExecuteNonQuery();
-            sqlConnection.Close();
+            string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("UPDATE_FLIGHTDB", sqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@FLIGHTID", id);
+                sqlCommand.Parameters.AddWithValue("@FLIGHTNAME", flightName);
+                sqlCommand.Parameters.AddWithValue("@FLIGHTNUMBER", flightNumber);
+                int i = sqlCommand.ExecuteNonQuery();
+            }
         }
     }
 
