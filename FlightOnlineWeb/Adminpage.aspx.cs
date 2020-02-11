@@ -22,17 +22,17 @@ namespace OnlineFlightBookingWeb
             idFlightView1.DataSource = dataTable;
             idFlightView1.DataBind();
         }
-        protected void FlightView1_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void FlightView_RowEditing(object sender, GridViewEditEventArgs e)
         {
             idFlightView1.EditIndex = e.NewEditIndex;
             FillData();
         }
-        protected void FlightView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        protected void FlightView_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             idFlightView1.EditIndex = -1;
             FillData();
         }
-        protected void FlightView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        protected void FlightView_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             string txtFlightName = Convert.ToString((idFlightView1.Rows[e.RowIndex].FindControl("TxtFlightName") as TextBox).Text);
             string txtFlightNumber = Convert.ToString((idFlightView1.Rows[e.RowIndex].FindControl("TxtFlightNumber")as TextBox).Text);
@@ -40,7 +40,7 @@ namespace OnlineFlightBookingWeb
             FlightBL.UpdateFlight(id, txtFlightName, txtFlightNumber);
             FillData();
         }
-        protected void FlightView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void FlightView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int id = Convert.ToInt16(idFlightView1.DataKeys[e.RowIndex].Values["flightId"].ToString());
             FlightBL.DeleteFlight(id);
