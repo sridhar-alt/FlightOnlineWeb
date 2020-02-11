@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FlightOnlineWeb
+namespace OnlineFlightBookingWeb
 {
 
 
@@ -15,22 +15,22 @@ namespace FlightOnlineWeb
     {
 
         /// <summary>
-        /// head control.
+        /// masterHead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder masterHead;
 
         /// <summary>
-        /// form1 control.
+        /// masterForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm masterForm;
 
         /// <summary>
         /// lnkLogin control.
@@ -60,12 +60,12 @@ namespace FlightOnlineWeb
         protected global::System.Web.UI.WebControls.HyperLink lnkViewFlight;
 
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// masterBody control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder masterBody;
     }
 }

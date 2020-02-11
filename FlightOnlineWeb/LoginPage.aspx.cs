@@ -1,7 +1,7 @@
-﻿using FlightOnline.BL;
+﻿using OnlineFlightBooking.BL;
 using System;
 
-namespace FlightOnlineWeb
+namespace OnlineFlightBookingWeb
 {
     public partial class MainPage : System.Web.UI.Page
     {
@@ -17,14 +17,14 @@ namespace FlightOnlineWeb
 
         protected void Login(object sender, EventArgs e)
         {
-            string mobile = txtmobile.Text;
-            string password = txtpassword.Text;
+            string mobile = txtMobile.Text;
+            string password = txtPassword.Text;
             Int16 result = UserBL.ValidateLogin(mobile, password);
-            if (result==2)
+            if (result==1)
             {
                 Response.Redirect("AdminPage.aspx");
             }
-            else if(result==1)
+            else if(result==2)
             {
                 Response.Write("USER PAGE Successfull");
             }

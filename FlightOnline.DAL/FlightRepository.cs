@@ -1,34 +1,33 @@
-﻿using System;
+﻿using OnlineFlightBooking.Entity;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace FlightOnline.DAL
+namespace OnlineFlightBooking.DAL
 {
-    public class AdminRepository
+    public class FlightRepository
     {
-        public static void InsertFlight(string flightName, string flightNumber)
+        static string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
+        public static void InsertFlight(FlightEntity flight)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
-                SqlCommand sqlCommand = new SqlCommand("FLIGHT_ADD", sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("SP_FLIGHT_ADD", sqlConnection);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-                SqlParameter param = new SqlParameter("@FLIGHTNAME", flightName);
+                SqlParameter param = new SqlParameter("@FLIGHTNAME", flight.FlightName);
                 sqlCommand.Parameters.Add(param);
-                param = new SqlParameter("@FLIGHTNUMBER", flightNumber);
+                param = new SqlParameter("@FLIGHTNUMBER", flight.FlightNumber);
                 sqlCommand.Parameters.Add(param);
                 sqlCommand.ExecuteNonQuery();
             }
         }
         public static void DeleteFlight(int id)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
-                SqlCommand sqlCommand = new SqlCommand("DELETE_FLIGHTDETAILS", sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("SP_DELETE_FLIGHTDETAILS", sqlConnection);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 SqlParameter param = new SqlParameter("@FLIGHTID", id);
                 sqlCommand.Parameters.Add(param);
@@ -37,23 +36,26 @@ namespace FlightOnline.DAL
         }
         public static DataTable ViewFlightDetails()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+           using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
-                sqlConnection.Open();
-                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("select * from flightdb", sqlConnection);
-                DataTable dataTable = new DataTable();
-                sqlDataAdapter.Fill(dataTable);
-                return dataTable;
+                string sql = "SP_FLIGHT_DISPLAY";
+                using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
+                {
+                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    sqlConnection.Open();
+                    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                    DataTable dataTable = new DataTable();
+                    sqlDataAdapter.Fill(dataTable);
+                    return dataTable;
+                }
             }
         }
         public static void UpdateFlight(int id, string flightName, string flightNumber)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
-                SqlCommand sqlCommand = new SqlCommand("UPDATE_FLIGHTDB", sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("SP_UPDATE_FLIGHTDB", sqlConnection);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.AddWithValue("@FLIGHTID", id);
                 sqlCommand.Parameters.AddWithValue("@FLIGHTNAME", flightName);

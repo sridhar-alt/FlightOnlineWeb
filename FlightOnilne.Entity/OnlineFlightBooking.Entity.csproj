@@ -41,13 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FlightEntity.cs" />
     <Compile Include="UserEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FlightOnline.Common\FlightOnline.Common.csproj">
+    <ProjectReference Include="..\FlightOnline.Common\OnlineFlightBooking.Common.csproj">
       <Project>{1a76db9d-6f5e-416f-8467-14275a789c97}</Project>
-      <Name>FlightOnline.Common</Name>
+      <Name>OnlineFlightBooking.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

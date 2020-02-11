@@ -1,82 +1,66 @@
-﻿using FlightOnilne.Entity;
+﻿using OnlineFlightBooking.Entity;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FlightOnline.DAL
+namespace OnlineFlightBooking.DAL
 {
     public class UserRepository
     {
+        static string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
         public static Int16 ValidateLogin(string mobile, string password)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
-                string sql = "USER_PROC_LOGIN";
+                string sql = "SP_LOGIN";
                 SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
                 sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                SqlParameter param = new SqlParameter("@MOBILENUMBER", mobile);
+                sqlCommand.Parameters.Add(param);
+                param = new SqlParameter("@PASSWORD", password);
+                sqlCommand.Parameters.Add(param);
+                sqlCommand.Parameters.Add("@ROLE", SqlDbType.VarChar, 15);
+                sqlCommand.Parameters["@ROLE"].Direction = ParameterDirection.Output;
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                if(Convert.ToString(sqlCommand.Parameters["@ROLE"].Value)=="admin")
                 {
-                    if (dataReader.HasRows)
-                    {
-                        while (dataReader.Read())
-                        {
-                            if ((dataReader.GetString(0) == mobile) && (dataReader.GetString(1) == password))
-                            {
-                                return 1;
-                            }
-                        }
-                    }
+                    return 1;
                 }
-                sql = "USER_PROC_ADMINLOGIN";
-                sqlCommand = new SqlCommand(sql, sqlConnection);
-                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                else if(Convert.ToString(sqlCommand.Parameters["@ROLE"].Value) == "user")
                 {
-                    if (dataReader.HasRows)
-                    {
-                        while (dataReader.Read())
-                        {
-                            if ((dataReader.GetString(0) == mobile) && (dataReader.GetString(1) == password))
-                            {
-                                return 2;
-                            }
-                        }
-                    }
+                    return 2;
+                }
+                else
+                {
+                    return 0;
                 }
             }
-            return 0;
         }
         public static Boolean RegisterUser(UserEntity user)
         {
             int row = 0;
-            string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
-                string sql = "USER_PROC_INSERT";
+                string sql = "SP_USER_PROC_INSERT";
                 using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
                 {
                     sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                    SqlParameter param = new SqlParameter("@NAME", user.name);
+                    SqlParameter param = new SqlParameter("@NAME", user.Name);
                     sqlCommand.Parameters.Add(param);
-                    param = new SqlParameter("@MOBILENUMBER", user.mobile);
+                    param = new SqlParameter("@MOBILENUMBER", user.Mobile);
                     sqlCommand.Parameters.Add(param);
-                    param = new SqlParameter("@DOB", user.dob);
+                    param = new SqlParameter("@DOB", user.Dob);
                     sqlCommand.Parameters.Add(param);
-                    param = new SqlParameter("@SEX", user.sex);
+                    param = new SqlParameter("@SEX", user.Sex);
                     sqlCommand.Parameters.Add(param);
-                    param = new SqlParameter("@USERADDRESS", user.userAddress);
+                    param = new SqlParameter("@USERADDRESS", user.UserAddress);
                     sqlCommand.Parameters.Add(param);
-                    param = new SqlParameter("@PASSWORD", user.password);
+                    param = new SqlParameter("@PASSWORD", user.Password);
                     sqlCommand.Parameters.Add(param);
-                    param = new SqlParameter("@MEMBERROLE", user.role);
+                    param = new SqlParameter("@MEMBERROLE", user.Role);
                     sqlCommand.Parameters.Add(param);
                     row = sqlCommand.ExecuteNonQuery();
                 }
@@ -92,14 +76,18 @@ namespace FlightOnline.DAL
         }
         public static DataTable ViewFlightDetails()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
-                sqlConnection.Open();
-                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("select * from flightdb", sqlConnection);
-                DataTable dataTable = new DataTable();
-                sqlDataAdapter.Fill(dataTable);
-                return dataTable;
+                string sql = "SP_FLIGHT_DISPLAY";
+                using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
+                {
+                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    sqlConnection.Open();
+                    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                    DataTable dataTable = new DataTable();
+                    sqlDataAdapter.Fill(dataTable);
+                    return dataTable;
+                }
             }
         }
     }

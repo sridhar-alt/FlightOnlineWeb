@@ -1,26 +1,27 @@
-﻿using FlightOnline.DAL;
+﻿using OnlineFlightBooking.DAL;
 using System.Data;
+using OnlineFlightBooking.Entity;
 
-namespace FlightOnline.BL
+namespace OnlineFlightBooking.BL
 {
     public class FlightBL
     {
-        public static void InsertFlight(string flightName, string flightNumber)
+        public static void InsertFlight(FlightEntity flight)
         {
-            AdminRepository.InsertFlight(flightName, flightNumber);
+            FlightRepository.InsertFlight(flight);
         }
         public static void DeleteFlight(int id)
         {
-            AdminRepository.DeleteFlight(id);
+            FlightRepository.DeleteFlight(id);
         }
         public static DataTable ViewFlightDetails()
         {
-            DataTable dataTable = AdminRepository.ViewFlightDetails();
+            DataTable dataTable = FlightRepository.ViewFlightDetails();
             return dataTable;
         }
         public static void UpdateFlight(int id, string flightName, string flightNumber)
         {
-            AdminRepository.UpdateFlight(id,flightName,flightNumber);
+            FlightRepository.UpdateFlight(id,flightName,flightNumber);
         }
     }
 }

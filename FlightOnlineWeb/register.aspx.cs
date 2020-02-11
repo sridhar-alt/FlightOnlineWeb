@@ -1,7 +1,7 @@
-﻿using FlightOnilne.Entity;
-using FlightOnline.BL;
+﻿using OnlineFlightBooking.Entity;
+using OnlineFlightBooking.BL;
 using System;
-namespace FlightOnlineWeb
+namespace OnlineFlightBookingWeb
 {
     public partial class Register : System.Web.UI.Page
     {
@@ -12,7 +12,7 @@ namespace FlightOnlineWeb
         protected void adduser(object sender, EventArgs e)
         {
             string name = txtName.Text;
-            string mobile = txtNumber.Text;
+            long mobile = Convert.ToInt64(txtNumber.Text);
             DateTime dob = Convert.ToDateTime(txtDob.Text);
             string mail = txtMail.Text;
             string gender;
@@ -30,7 +30,7 @@ namespace FlightOnlineWeb
             }
             else
             {
-                Response.Write("Not Registered");
+                Response.Write("Mobile Number already Registered");
             }
         }
     }

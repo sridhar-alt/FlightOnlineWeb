@@ -1,9 +1,9 @@
-﻿using FlightOnilne.Entity;
-using FlightOnline.DAL;
+﻿using OnlineFlightBooking.Entity;
+using OnlineFlightBooking.DAL;
 using System;
 using System.Data;
 
-namespace FlightOnline.BL
+namespace OnlineFlightBooking.BL
 {
     public class UserBL
     {

@@ -1,10 +1,11 @@
-﻿using FlightOnline.BL;
+﻿using OnlineFlightBooking.BL;
+using OnlineFlightBooking.Entity;
 using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace FlightOnlineWeb
+namespace OnlineFlightBookingWeb
 {
     public partial class Adminpage : System.Web.UI.Page
     {
@@ -49,7 +50,8 @@ namespace FlightOnlineWeb
         {
             string txtFlightName = Convert.ToString((idFlightView1.FooterRow.FindControl("txtInsertFlightName") as TextBox).Text);
             string txtFlightNumber = Convert.ToString((idFlightView1.FooterRow.FindControl("txtInsertFlightNumber") as TextBox).Text);
-            FlightBL.InsertFlight(txtFlightName,txtFlightNumber);
+            FlightEntity flightEntity = new FlightEntity(txtFlightName, txtFlightNumber);
+            FlightBL.InsertFlight(flightEntity);
             FillData();
         }
     }

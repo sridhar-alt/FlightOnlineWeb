@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FlightOnlineWeb
+namespace OnlineFlightBookingWeb
 {
 
 

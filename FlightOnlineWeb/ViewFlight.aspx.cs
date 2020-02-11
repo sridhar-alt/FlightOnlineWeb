@@ -1,15 +1,14 @@
-﻿using FlightOnline.BL;
+﻿using OnlineFlightBooking.BL;
 using System;
 using System.Data;
 
-namespace FlightOnlineWeb
+namespace OnlineFlightBookingWeb
 {
     public partial class ViewFlight : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataTable dataTable = new DataTable();
-            dataTable = UserBL.ViewFlightDetails();
+            DataTable dataTable = UserBL.ViewFlightDetails();
             idFlightView.DataSource = dataTable;
             idFlightView.DataBind();
         }

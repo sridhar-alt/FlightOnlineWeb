@@ -125,6 +125,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Images\807536.jpg" />
+    <Content Include="Images\Aspire_Systems.png" />
     <Content Include="MasterPage.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="LoginPage.aspx" />
@@ -157,6 +159,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Style.css" />
     <Content Include="ViewFlight.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -248,13 +251,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FlightOnilne.Entity\FlightOnilne.Entity.csproj">
+    <ProjectReference Include="..\FlightOnilne.Entity\OnlineFlightBooking.Entity.csproj">
       <Project>{4B94EE9C-9C60-4FB8-9619-358035A1520D}</Project>
-      <Name>FlightOnilne.Entity</Name>
+      <Name>OnlineFlightBooking.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FlightOnline.BL\FlightOnline.BL.csproj">
+    <ProjectReference Include="..\FlightOnline.BL\OnlineFlightBooking.BL.csproj">
       <Project>{56EAC084-A811-46A4-9666-675A73F67617}</Project>
-      <Name>FlightOnline.BL</Name>
+      <Name>OnlineFlightBooking.BL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
